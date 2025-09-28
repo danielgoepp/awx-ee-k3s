@@ -6,9 +6,9 @@ Custom Ansible Execution Environment for AWX/Ansible Automation Platform with Ku
 
 This project builds a containerized Ansible execution environment that includes:
 - Ansible Core and Ansible Runner
-- Kubernetes.core collection for Kubernetes automation
+- Kubernetes.core and Community.general collections
 - SSH connectivity tools (openssh-clients, sshpass)
-- Based on the official AWX execution environment
+- Based on Fedora 42 for improved compatibility
 
 ## Quick Start
 
@@ -41,10 +41,10 @@ ansible-navigator --execution-environment-image awx-ee-k3s:latest
 
 ### Execution Environment Definition
 The `execution-environment.yml` file defines:
-- **Base Image**: `quay.io/ansible/awx-ee:latest`
+- **Base Image**: `registry.fedoraproject.org/fedora:42`
 - **Python Packages**: ansible-core, ansible-runner
 - **System Packages**: openssh-clients, sshpass
-- **Collections**: kubernetes.core
+- **Collections**: kubernetes.core, community.general
 
 ### Customizing Dependencies
 
@@ -55,6 +55,7 @@ dependencies:
   galaxy:
     collections:
     - name: kubernetes.core
+    - name: community.general
     - name: your.new.collection  # Add new collections here
 ```
 
@@ -130,7 +131,7 @@ ansible-navigator run test_localhost.yml --execution-environment-image awx-ee-k3
 ### Build Issues
 - Ensure Docker/Podman is running
 - Check `ansible-builder --version` compatibility
-- Verify base image accessibility: `docker pull quay.io/ansible/awx-ee:latest`
+- Verify base image accessibility: `docker pull registry.fedoraproject.org/fedora:42`
 
 ### Runtime Issues
 - Check execution environment logs in AWX
