@@ -1,4 +1,4 @@
-ARG EE_BASE_IMAGE="quay.io/ansible/awx-ee:latest"
+ARG EE_BASE_IMAGE="registry.fedoraproject.org/fedora:42"
 ARG PYCMD="/usr/bin/python3"
 ARG PYPKG="python3"
 ARG PKGMGR_PRESERVE_CACHE=""
