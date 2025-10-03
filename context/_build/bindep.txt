@@ -1,2 +1,8 @@
 openssh-clients
 sshpass
+curl
+tar
+gzip
+git
+openssl
+ca-certificates

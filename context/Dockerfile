@@ -88,6 +88,9 @@ RUN chmod ug+rw /etc/passwd
 RUN mkdir -p /runner && chgrp 0 /runner && chmod -R ug+rwx /runner
 WORKDIR /runner
 RUN $PYCMD -m pip install --no-cache-dir 'dumb-init==1.2.5'
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+RUN chmod 700 get_helm.sh
+RUN ./get_helm.sh
 RUN rm -rf /output
 LABEL ansible-execution-environment=true
 USER 1000

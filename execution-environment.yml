@@ -1,3 +1,4 @@
+---
 version: 3
 
 images:
@@ -14,7 +15,19 @@ dependencies:
   system:
   - openssh-clients
   - sshpass
+  - curl
+  - tar
+  - gzip
+  - git
+  - openssl
+  - ca-certificates
   galaxy:
     collections:
     - name: community.general
     - name: kubernetes.core
+    
+additional_build_steps:
+  append_final:
+    - RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    - RUN chmod 700 get_helm.sh
+    - RUN ./get_helm.sh
