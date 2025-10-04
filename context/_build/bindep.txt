@@ -1,8 +1,8 @@
 openssh-clients
 sshpass
+openssl
 curl
 tar
 gzip
 git
-openssl
-ca-certificates
+kubernetes

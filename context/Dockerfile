@@ -91,6 +91,9 @@ RUN $PYCMD -m pip install --no-cache-dir 'dumb-init==1.2.5'
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 RUN chmod 700 get_helm.sh
 RUN ./get_helm.sh
+ENV HELM_PLUGINS=/usr/local/share/helm/plugins
+RUN mkdir -p $HELM_PLUGINS
+RUN helm plugin install https://github.com/databus23/helm-diff
 RUN rm -rf /output
 LABEL ansible-execution-environment=true
 USER 1000

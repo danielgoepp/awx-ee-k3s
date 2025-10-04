@@ -15,15 +15,16 @@ dependencies:
   system:
   - openssh-clients
   - sshpass
+  - openssl
   - curl
   - tar
   - gzip
   - git
-  - openssl
-  - ca-certificates
+  - kubernetes
   galaxy:
     collections:
     - name: community.general
+    - name: community.kubernetes
     - name: kubernetes.core
     
 additional_build_steps:
@@ -31,3 +32,6 @@ additional_build_steps:
     - RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
     - RUN chmod 700 get_helm.sh
     - RUN ./get_helm.sh
+    - ENV HELM_PLUGINS=/usr/local/share/helm/plugins
+    - RUN mkdir -p $HELM_PLUGINS
+    - RUN helm plugin install https://github.com/databus23/helm-diff
